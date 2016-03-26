@@ -33,7 +33,7 @@ export class RedpenError {
 export class Redpen {
     static exec(filename) {
         filename = "/Users/takeo/Desktop/IoT-presentation.txt";
-        const cmd = "redpen -r json2" + filename;
+        const cmd = "redpen -r json2 " + filename;
         exec(cmd, function(err, stdout, stderr) {
             const json = JSON.parse(stdout);
             function parse(param) {
