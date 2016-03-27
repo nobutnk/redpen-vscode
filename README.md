@@ -2,3 +2,4 @@
 Sample language server implemented in Node
 
 sampleをカスタムしてredpenようにする
+VSCode debuggerめちゃ落ちる
