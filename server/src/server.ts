@@ -12,6 +12,8 @@ import {
   CompletionItem, CompletionItemKind
 } from "vscode-languageserver";
 
+import {Redpen} from "./redpen";
+
 // Create a connection for the server. The connection uses 
 // stdin / stdout for message passing
 let connection: IConnection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
@@ -69,6 +71,9 @@ connection.onDidChangeConfiguration((change) => {
 });
 
 function validateTextDocument(textDocument: ITextDocument): void {
+
+    Redpen.execSync(textDocument.uri);
+
   let diagnostics: Diagnostic[] = [];
   let lines = textDocument.getText().split(/\r?\n/g);
   let problems = 0;
@@ -83,7 +88,7 @@ function validateTextDocument(textDocument: ITextDocument): void {
           start: { line: i, character: index},
           end: { line: i, character: index + 10 }
         },
-        message: `${line.substr(index, 10)} should be spelled TypeScript`
+        message: `${line.substr(index, 10)} should bee spelled TypeScript?`
       });
     }
   }
