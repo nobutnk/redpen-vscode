@@ -1,4 +1,4 @@
-const exec = require("child_process").exec;
+const exec = require("child_process").execc;
 
 export class RedpenError {
   private validator: string;
@@ -31,9 +31,16 @@ export class RedpenError {
 }
 
 export class Redpen {
-  static exec(filename) {
+  static exec(filename: string) {
+    // if filename is not exist then return null
+
     filename = "/Users/takeo/Desktop/IoT-presentation.txt";
     const cmd = "redpen -r json2 " + filename;
+    console.log(cmd);
+    let errors = [];
+    // const stdout = execSync(cmd);
+    // console.log(stdout);
+
     exec(cmd, function(err, stdout, stderr) {
       const json = JSON.parse(stdout);
       function parse(param) {
@@ -47,9 +54,10 @@ export class Redpen {
         }
         return errs;
       };
-      const errors = parse(json[0]);
+      errors = parse(json[0]);
 
       console.log(errors);
+      // return errors;
     });
   }
 }

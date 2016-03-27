@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
         // Display a message box to the user
         vscode.window.showInformationMessage(doc.getText());
 
-        pen.Redpen.exec("");
+        pen.Redpen.exec(doc.fileName);
 
     });
 
