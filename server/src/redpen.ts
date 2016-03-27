@@ -2,12 +2,9 @@
 
 /// <reference path="../typings/node/node.d.ts" />
 
-
-// const execSync = require("child_process").execSync;
-import {execSync} from "child_process";
-
 const path = require("path");
 
+import {execSync} from "child_process";
 import {Diagnostic, DiagnosticSeverity} from "vscode-languageserver";
 
 export class Redpen {
@@ -50,8 +47,8 @@ export class RedpenError {
 
         const p = params["position"];
         this.position = {
-            start: {offset: p["start"]["offset"], line: p["start"]["line"]},
-            end:  {offset: p["end"]["offset"], line: p["end"]["line"]}
+            start: {offset: p["start"]["offset"], line: p["start"]["line"] === 0 ? 0 : p["start"]["line"] - 1},
+            end:  {offset: p["end"]["offset"], line: p["end"]["line"] === 0 ? 0 : p["end"]["line"] - 1}
         };
     }
     getDiagnostic(): Diagnostic {
