@@ -1,5 +1,5 @@
 {
-	"name": "language-client-example",
+	"name": "redpen-extension",
 	"description": "VSCode extension for Redpen",
 	"author": "takeo asai",
 	"license": "MIT",

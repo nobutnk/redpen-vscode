@@ -37,6 +37,7 @@ export class Redpen {
 }
 
 export class RedpenError {
+    private code: string;
     private message: string;
     private severity: DiagnosticSeverity;
     private position: {
@@ -45,9 +46,8 @@ export class RedpenError {
     };
 
     constructor(params) {
-        this.message = params["validator"];
-        this.message += ": ";
-        this.message += params["message"];
+        this.code = params["validator"];
+        this.message = params["message"];
         this.severity = DiagnosticSeverity.Warning;
 
         const p = params["position"];
@@ -64,7 +64,9 @@ export class RedpenError {
                 start: { line: p.start.line, character: p.start.offset},
                 end: { line: p.end.line, character: p.end.offset }
             },
-            message: this.message
+            code: this.code,
+            message: this.message,
+            source: "Redpen"
         };
     }
 }

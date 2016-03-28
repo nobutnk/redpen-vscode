@@ -1,5 +1,5 @@
 {
-	"name": "langauge-server-example",
+	"name": "redpen-vscode-server",
 	"description": "Redpen language server in node.",
 	"version": "0.0.2",
 	"author": "takeo asai",
