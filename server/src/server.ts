@@ -9,11 +9,11 @@
 "use strict";
 
 import {
-  IPCMessageReader, IPCMessageWriter,
-  createConnection, IConnection, TextDocumentSyncKind,
-  TextDocuments, ITextDocument, Diagnostic, DiagnosticSeverity,
-  InitializeParams, InitializeResult, TextDocumentIdentifier,
-  CompletionItem, CompletionItemKind
+    IPCMessageReader, IPCMessageWriter,
+    createConnection, IConnection, TextDocumentSyncKind,
+    TextDocuments, ITextDocument, Diagnostic, DiagnosticSeverity,
+    InitializeParams, InitializeResult, TextDocumentIdentifier,
+    CompletionItem, CompletionItemKind
 } from "vscode-languageserver";
 
 import {Redpen, RedpenError} from "./redpen";
@@ -33,34 +33,34 @@ documents.listen(connection);
 // in the passed params the rootPath of the workspace plus the client capabilites. 
 let workspaceRoot: string;
 connection.onInitialize((params): InitializeResult => {
-  workspaceRoot = params.rootPath;
-  return {
-    capabilities: {
-      // Tell the client that the server works in FULL text document sync mode
-      textDocumentSync: documents.syncKind,
-      // Tell the client that the server support code complete
-      completionProvider: {
-        resolveProvider: true
-      }
-    }
-  };
+    workspaceRoot = params.rootPath;
+    return {
+        capabilities: {
+            // Tell the client that the server works in FULL text document sync mode
+            textDocumentSync: documents.syncKind,
+            // Tell the client that the server support code complete
+            completionProvider: {
+                resolveProvider: true
+            }
+        }
+    };
 });
 
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent((change) => {
-  validateTextDocument(change.document);
+    validateTextDocument(change.document);
 });
 
 // The settings interface describe the server relevant settings part
 interface Settings {
-  languageServerExample: ExampleSettings;
+    languageServerExample: ExampleSettings;
 }
 
 // These are the example settings we defined in the client's package.json
 // file
 interface ExampleSettings {
-  maxNumberOfProblems: number;
+    maxNumberOfProblems: number;
 }
 
 // hold the maxNumberOfProblems setting
@@ -68,10 +68,10 @@ let maxNumberOfProblems: number;
 // The settings have changed. Is send on server activation
 // as well.
 connection.onDidChangeConfiguration((change) => {
-  let settings = <Settings>change.settings;
-  maxNumberOfProblems = settings.languageServerExample.maxNumberOfProblems || 100;
-  // Revalidate any open text documents
-  documents.all().forEach(validateTextDocument);
+    let settings = <Settings>change.settings;
+    maxNumberOfProblems = settings.languageServerExample.maxNumberOfProblems || 100;
+    // Revalidate any open text documents
+    documents.all().forEach(validateTextDocument);
 });
 
 function validateTextDocument(textDocument: ITextDocument) {
@@ -86,41 +86,41 @@ function validateTextDocument(textDocument: ITextDocument) {
 }
 
 connection.onDidChangeWatchedFiles((change) => {
-  // Monitored files have change in VSCode
-  connection.console.log("We recevied an file change event");
+    // Monitored files have change in VSCode
+    connection.console.log("We recevied an file change event");
 });
 
 
 // This handler provides the initial list of the completion items.
 connection.onCompletion((textDocumentPosition: TextDocumentIdentifier): CompletionItem[] => {
-  // The pass parameter contains the position of the text document in 
-  // which code complete got requested. For the example we ignore this
-  // info and always provide the same completion items.
-  return [
-    {
-      label: "TypeScript",
-      kind: CompletionItemKind.Text,
-      data: 1
-    },
-    {
-      label: "JavaScript",
-      kind: CompletionItemKind.Text,
-      data: 2
-    }
-  ];
+    // The pass parameter contains the position of the text document in 
+    // which code complete got requested. For the example we ignore this
+    // info and always provide the same completion items
+    return [
+        {
+            label: "TypeScript",
+            kind: CompletionItemKind.Text,
+            data: 1
+        },
+        {
+            label: "JavaScript",
+            kind: CompletionItemKind.Text,
+            data: 2
+        }
+    ];
 });
 
 // This handler resolve additional information for the item selected in
 // the completion list.
 connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
-  if (item.data === 1) {
-    item.detail = "TypeScript details",
-    item.documentation = "TypeScript documentation";
-  } else if (item.data === 2) {
-    item.detail = "JavaScript details",
-    item.documentation = "JavaScript documentation";
-  }
-  return item;
+    if (item.data === 1) {
+        item.detail = "TypeScript details",
+        item.documentation = "TypeScript documentation";
+    } else if (item.data === 2) {
+        item.detail = "JavaScript details",
+        item.documentation = "JavaScript documentation";
+    }
+    return item;
 });
 
 // Listen on the connection
