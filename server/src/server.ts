@@ -33,6 +33,7 @@ documents.listen(connection);
 // in the passed params the rootPath of the workspace plus the client capabilites. 
 let workspaceRoot: string;
 connection.onInitialize((params): InitializeResult => {
+    console.log("connection.onInitialize");
     workspaceRoot = params.rootPath;
     return {
         capabilities: {
@@ -49,6 +50,7 @@ connection.onInitialize((params): InitializeResult => {
 // The content of a text document has changed. This event is emitted
 // when the text document first opened or when its content has changed.
 documents.onDidChangeContent((change) => {
+    console.log("documents.onDidChangeContent");
     validateTextDocument(change.document);
 });
 
@@ -65,9 +67,9 @@ interface ExampleSettings {
 
 // hold the maxNumberOfProblems setting
 let maxNumberOfProblems: number;
-// The settings have changed. Is send on server activation
-// as well.
+// The settings have changed. Is send on server activation as well.
 connection.onDidChangeConfiguration((change) => {
+    console.log("connection.onDidChangeConfiguration");
     const settings = <Settings>change.settings;
     maxNumberOfProblems = settings.redpen.maxNumberOfProblems || 1000;
     // Revalidate any open text documents
@@ -76,6 +78,7 @@ connection.onDidChangeConfiguration((change) => {
 
 // set diagnostics when changes
 function validateTextDocument(textDocument: ITextDocument) {
+    console.log("-------------diagnostics-----------");
     const redpenErrors: RedpenError[] = Redpen.execSync(textDocument.uri, maxNumberOfProblems);
     const diagnostics: Diagnostic[] = redpenErrors.map((v) => { return v.getDiagnostic(); });
 
@@ -91,6 +94,7 @@ connection.onDidChangeWatchedFiles((change) => {
 
 // This handler provides the initial list of the completion items.
 connection.onCompletion((textDocumentPosition: TextDocumentIdentifier): CompletionItem[] => {
+    console.log("connection.onCompletion");
     // The pass parameter contains the position of the text document in 
     // which code complete got requested. For the example we ignore this
     // info and always provide the same completion items
@@ -111,6 +115,7 @@ connection.onCompletion((textDocumentPosition: TextDocumentIdentifier): Completi
 // This handler resolve additional information for the item selected in
 // the completion list.
 connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
+    console.log("connection.onCompletionResolve");
     if (item.data === 1) {
         item.detail = "TypeScript details",
         item.documentation = "TypeScript documentation";
