@@ -7,15 +7,14 @@
 
 /// <reference path="../typings/node/node.d.ts" />
 
-const path = require("path");
-
+import * as path from "path";
 import {execSync} from "child_process";
-import {Diagnostic, DiagnosticSeverity} from "vscode-languageserver";
+import {Diagnostic, DiagnosticSeverity, Files} from "vscode-languageserver";
 
 export class Redpen {
-    static execSync(filename: string): RedpenError[] {
+    static execSync(filename: string, limit: number = 1000): RedpenError[] {
         filename = path.relative("file:", filename);
-        const cmd = "redpen -l 1000 -r json2 /" + filename;
+        const cmd = `redpen -l ${limit} -r json2 /${filename}`;
         const stdout = execSync(cmd, {encoding: "utf8"});
 
         // parse json to redpen_error

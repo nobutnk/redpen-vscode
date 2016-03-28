@@ -68,19 +68,16 @@ let maxNumberOfProblems: number;
 // The settings have changed. Is send on server activation
 // as well.
 connection.onDidChangeConfiguration((change) => {
-    let settings = <Settings>change.settings;
-    maxNumberOfProblems = settings.redpen.maxNumberOfProblems || 100;
+    const settings = <Settings>change.settings;
+    maxNumberOfProblems = settings.redpen.maxNumberOfProblems || 1000;
     // Revalidate any open text documents
     documents.all().forEach(validateTextDocument);
 });
 
+// set diagnostics when changes
 function validateTextDocument(textDocument: ITextDocument) {
-    const redpenErrors: RedpenError[] = Redpen.execSync(textDocument.uri);
-
-    let diagnostics: Diagnostic[] = [];
-    for (const err of redpenErrors) {
-        diagnostics.push(err.getDiagnostic());
-    }
+    const redpenErrors: RedpenError[] = Redpen.execSync(textDocument.uri, maxNumberOfProblems);
+    const diagnostics: Diagnostic[] = redpenErrors.map((v) => { return v.getDiagnostic(); });
 
     connection.sendDiagnostics({uri: textDocument.uri, diagnostics});
 }
@@ -88,6 +85,7 @@ function validateTextDocument(textDocument: ITextDocument) {
 connection.onDidChangeWatchedFiles((change) => {
     // Monitored files have change in VSCode
     connection.console.log("We recevied an file change event");
+    console.log("We recevied an file change event");
 });
 
 

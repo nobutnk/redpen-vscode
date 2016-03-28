@@ -29,7 +29,7 @@ export function activate(context: ExtensionContext) {
     // Options to control the language client
     let clientOptions: LanguageClientOptions = {
         // Register the server for plain text documents
-        documentSelector: ["plaintext"], // TODO: add markdown
+        documentSelector: ["plaintext", "markdown"], // TODO: add markdown
         synchronize: {
             // Synchronize the setting section 'redpen' to the server
             configurationSection: "redpen",
