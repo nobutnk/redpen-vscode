@@ -1,3 +1,7 @@
+/* -----------------------------------------------------------
+ * modified by takeo asai
+ * extension for Redpen (http://redpen.cc)
+ * -------------------------------------------------------- */
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
@@ -5,7 +9,6 @@
 "use strict";
 
 import * as path from "path";
-
 import { workspace, Disposable, ExtensionContext } from "vscode";
 import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind } from "vscode-languageclient";
 
@@ -26,10 +29,10 @@ export function activate(context: ExtensionContext) {
     // Options to control the language client
     let clientOptions: LanguageClientOptions = {
         // Register the server for plain text documents
-        documentSelector: ["plaintext"],
+        documentSelector: ["plaintext"], // TODO: add markdown
         synchronize: {
-            // Synchronize the setting section 'languageServerExample' to the server
-            configurationSection: "languageServerExample",
+            // Synchronize the setting section 'redpen' to the server
+            configurationSection: "redpen",
             // Notify the server about file changes to '.clientrc files contain in the workspace
             fileEvents: workspace.createFileSystemWatcher("**/.clientrc")
         }

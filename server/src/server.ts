@@ -54,7 +54,7 @@ documents.onDidChangeContent((change) => {
 
 // The settings interface describe the server relevant settings part
 interface Settings {
-    languageServerExample: ExampleSettings;
+    redpen: ExampleSettings;
 }
 
 // These are the example settings we defined in the client's package.json
@@ -69,7 +69,7 @@ let maxNumberOfProblems: number;
 // as well.
 connection.onDidChangeConfiguration((change) => {
     let settings = <Settings>change.settings;
-    maxNumberOfProblems = settings.languageServerExample.maxNumberOfProblems || 100;
+    maxNumberOfProblems = settings.redpen.maxNumberOfProblems || 100;
     // Revalidate any open text documents
     documents.all().forEach(validateTextDocument);
 });
