@@ -1,4 +1,6 @@
 # README
-## This is the README for your extension "vscode" 
 
-read README in ../server
+VSCode extension for Redpen(http://redpen.cc)
+
+https://github.com/takeo-asai/redpen-vscode
+under MIT License
