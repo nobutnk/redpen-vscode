@@ -1,3 +1,7 @@
+/* -----------------------------------------------------------
+ * modified by takeo asai
+ * extension for Redpen (http://redpen.cc)
+ * -------------------------------------------------------- */
 /* --------------------------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
@@ -118,28 +122,6 @@ connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
   }
   return item;
 });
-
-/*
-connection.onDidOpenTextDocument((params) => {
-  // A text document got opened in VSCode.
-  // params.uri uniquely identifies the document. For documents store on disk this is a file URI.
-  // params.text the initial full content of the document.
-  connection.console.log(`${params.uri} opened.`);
-});
-
-connection.onDidChangeTextDocument((params) => {
-  // The content of a text document did change in VSCode.
-  // params.uri uniquely identifies the document.
-  // params.contentChanges describe the content changes to the document.
-  connection.console.log(`${params.uri} changed: ${JSON.stringify(params.contentChanges)}`);
-});
-
-connection.onDidCloseTextDocument((params) => {
-  // A text document got closed in VSCode.
-  // params.uri uniquely identifies the document.
-  connection.console.log(`${params.uri} closed.`);
-});
-*/
 
 // Listen on the connection
 connection.listen();

@@ -1,3 +1,8 @@
+/* -----------------------------------------------------------
+ * created by takeo asai
+ * extension for Redpen (http://redpen.cc)
+ * -------------------------------------------------------- */
+
 "use strict";
 
 /// <reference path="../typings/node/node.d.ts" />
