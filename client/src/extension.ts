@@ -34,12 +34,12 @@ export function activate(context: ExtensionContext) {
             // Synchronize the setting section 'redpen' to the server
             configurationSection: "redpen",
             // Notify the server about file changes to '.clientrc files contain in the workspace
-            fileEvents: workspace.createFileSystemWatcher("**/.clientrc")
+            fileEvents: workspace.createFileSystemWatcher("**/redpen-conf-*.xml")
         }
     };
 
     // Create the language client and start the client.
-    let disposable = new LanguageClient("Language Server Example", serverOptions, clientOptions).start();
+    let disposable = new LanguageClient("Redpen", serverOptions, clientOptions).start();
 
     // Push the disposable to the context's subscriptions so that the 
     // client can be deactivated on extension deactivation
