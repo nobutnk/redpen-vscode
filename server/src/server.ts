@@ -14,9 +14,9 @@ import {
     TextDocuments, ITextDocument, Diagnostic, DiagnosticSeverity,
     InitializeParams, InitializeResult, TextDocumentIdentifier,
     CompletionItem, CompletionItemKind
-} from "vscode-languageserver";
+} from 'vscode-languageserver';
 
-import {Redpen, RedpenError} from "./redpen";
+import {Redpen, RedpenError} from './redpen';
 
 // Create a connection for the server. The connection uses 
 // stdin / stdout for message passing

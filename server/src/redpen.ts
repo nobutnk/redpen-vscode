@@ -7,9 +7,9 @@
 
 /// <reference path="../typings/node/node.d.ts" />
 
-import * as path from "path";
-import {execSync} from "child_process";
-import {Diagnostic, DiagnosticSeverity, Files} from "vscode-languageserver";
+import * as path from 'path';
+import {execSync} from 'child_process';
+import {Diagnostic, DiagnosticSeverity, Files} from 'vscode-languageserver';
 
 export class Redpen {
     static execSync(filename: string, limit: number = 1000): RedpenError[] {
