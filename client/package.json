@@ -1,43 +1,44 @@
 {
-	"name": "redpen-extension",
-	"description": "VSCode extension for Redpen",
-	"author": "takeo asai",
-	"license": "MIT",
-	"version": "0.0.3",
-	"publisher": "takeo-asai",
-	"engines": {
-		"vscode": "0.10.x"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onLanguage:plaintext",
-        "onLanguage:markdown"
-	],
-	"main": "./out/src/extension",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "Example configuration",
-			"properties": {
-				"redpen.maxNumberOfProblems": {
-					"type": "number",
-					"default": 100,
-					"description": "Controls the maximum number of problems produced by the server."
-				}
-			}
-		}
-	},	
-	"scripts": {
-		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
-	},
-	"devDependencies": {
-		"typescript": "^1.6.2",
-		"vscode": "0.10.x"
-	},
-	"dependencies": {
-		"vscode-languageclient": "^1.1.0"
-	}
+  "name": "redpen-extension",
+  "description": "VSCode extension for Redpen",
+  "author": "takeo asai",
+  "license": "MIT",
+  "version": "0.0.3",
+  "publisher": "takeo-asai",
+  "engines": {
+    "vscode": "1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:plaintext",
+    "onLanguage:markdown"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Example configuration",
+      "properties": {
+        "redpen.maxNumberOfProblems": {
+          "type": "number",
+          "default": 100,
+          "description": "Controls the maximum number of problems produced by the server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.54.0",
+    "typescript": "^4.2.3",
+    "vscode-test": "^1.5.1"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^7.0.0"
+  }
 }
