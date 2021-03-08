@@ -1,20 +1,20 @@
 {
-	"name": "redpen-vscode-server",
-	"description": "Redpen language server in node.",
-	"version": "0.0.2",
-	"author": "takeo asai",
-	"license": "MIT",
-	"engines": {
-		"node": "*"
-	},
-	"dependencies": {
-		"vscode-languageserver": "^1.1.0"
-	},
-	"devDependencies": {
-		"typescript": "^1.6.2"
-	},
-	"scripts": {
-		"compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",
-		"watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc --watch -p ."
-	}
+  "name": "redpen-vscode-server",
+  "description": "Redpen language server in node.",
+  "version": "0.0.2",
+  "author": "takeo asai",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",
+    "watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc --watch -p ."
+  }
 }
